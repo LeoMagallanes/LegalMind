@@ -1,0 +1,79 @@
+/* Estilos para modo oscuro */
+
+body {
+    background-color: #121212; /* Fondo oscuro */
+    color: #E0E0E0; /* Texto claro */
+    font-family: Arial, sans-serif;
+}
+
+h1, h4 {
+    color: #BB86FC; /* Títulos en un color púrpura claro */
+}
+
+pre {
+    background-color: #1E1E1E; /* Fondo más oscuro para el área de resultados */
+    color: #E0E0E0;
+    border: 1px solid #BB86FC; /* Borde en púrpura claro */
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+
+.container {
+    margin-top: 50px;
+}
+
+.form-label {
+    color: #E0E0E0; /* Etiqueta de formulario en color claro */
+}
+
+input[type="file"] {
+    background-color: #1E1E1E; /* Campo de entrada oscuro */
+    color: #E0E0E0; /* Texto claro dentro del campo */
+    border: 1px solid #BB86FC; /* Borde púrpura claro */
+    padding: 10px;
+}
+
+button {
+    background-color: #BB86FC; /* Botón en púrpura claro */
+    color: #121212; /* Texto oscuro para contraste */
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #9F67E9; /* Botón ligeramente más oscuro al pasar el ratón */
+}
+
+#analysis-result {
+    margin-top: 30px;
+}
+
+pre {
+    padding: 15px;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+/* Fondo claro para pre visualización */
+.bg-light {
+    background-color: #1E1E1E !important; 
+}
+
+
+/* Estilo para el footer */
+.footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: #1E1E1E;
+    padding: 10px 0;
+}
+
+.footer .text-muted {
+    color: #E0E0E0 !important; 
+    font-size: 0.9rem;
+    text-align: center;
+}
