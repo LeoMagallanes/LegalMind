@@ -7,6 +7,7 @@ Para instalar una dependencia usamos npm install*/
 
 //Aqui empieza el backend y la config del servidor
 import express from 'express';
+import { fileURLToPath } from 'url';
 import path from 'path';
 import fs from 'fs'; 
 import multer from 'multer'; 
@@ -22,14 +23,16 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 // Obtén el equivalente de __dirname en ESM
-const __dirname = path.dirname(new URL(import.meta.url).pathname);
+const __filename = fileURLToPath(import.meta.url);
+//const __dirname = path.dirname(new URL(import.meta.url).pathname);
+const __dirname = path.dirname(__filename);
 console.log(__dirname);
 //Sirve los archivos estáticos (HTML, CSS, JS) desde 'public'
 app.use(express.static(path.join(__dirname, '..','public')));
 
 // Ruta principal (cuando accedes a "/")
 app.get('/', (req, res) => {
-    const indexPath = path.resolve(__dirname, '../public', 'index.html');
+    const indexPath = path.join(__dirname, '..', 'public', 'index.html');
     res.sendFile(indexPath);
     //res.sendFile(path.join(__dirname, '../public', 'index.html')); // Sirve el archivo HTML
 });
@@ -54,7 +57,7 @@ app.post('/upload', upload.single('file'), async (req, res) => {
         //cargar el archivo para enviarlo a la API de Google Gemini
         //que es __dirname.
         //Checar que el filepath este correcto. ***********
-        const filePath = path.join(__dirname, 'uploads', req.file.filename);
+        const filePath = path.join(__dirname, '..','uploads', req.file.filename);
 
         //Subir archivo a Google Gemini
         const uploadResponse = await fileManager.uploadFile(filePath, {
@@ -67,6 +70,7 @@ app.post('/upload', upload.single('file'), async (req, res) => {
         //Usae el modelo de Google Gemini para generar contenido basado en el archivo.
         const model = genAI.getGenerativeModel({
             model: 'gemini-1.5-flash', //Aquí podemos cambiar el modelo.
+            //Angel trol: tunedModels/prompts-legales-hwflztytvn7v
         });
 
         //generar contenido con el archivo y el prompt.
@@ -77,7 +81,7 @@ app.post('/upload', upload.single('file'), async (req, res) => {
                     fileUri: uploadResponse.file.uri,
                 },
             },
-            { text: 'Analyze this contract and identify abusive, unfair, ambiguous, or bad-faith clauses. Explain why they are problematic and suggest improvements to make them clear and fair.'},
+            { text: 'Analyze this contract and identify abusive, unfair, ambiguous, or bad-faith clauses, do not add improvements! nor suggestions nor pleasantries for improvements! to the bad clauses. Explain why they are problematics. Write the response on the same language as the document is.'},
         ]);
 
         //Enviar el resultado generado al frontend

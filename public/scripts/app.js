@@ -30,7 +30,8 @@ document.getElementById('file-upload-form').addEventListener('submit', async fun
         if (data.summary){
             //Mostrar el resumen generado por Google Gemini
             const resultText = document.getElementById('result-text');
-            resultText.textContent = 'Análisis: \n${data.summary}';
+            resultText.textContent = data.summary;
+            console.log(data.summary);
         }else{
             alert('No se generó un análisis.');
         }
@@ -38,44 +39,4 @@ document.getElementById('file-upload-form').addEventListener('submit', async fun
         console.error('Error al enviar el archivo:', error);
         alert('Hubo un error al cargar el archivo.');
     }
-
-    /*
-    // Leer el archivo PDF con PDF.js
-    const fileReader = new FileReader();
-    fileReader.readAsArrayBuffer(file);
-
-    fileReader.onload = async function () {
-        const typedArray = new Uint8Array(fileReader.result);
-
-        // Cargar el PDF con PDF.js
-        console.log("Antes de cargar el pdf.");
-        const pdf = await pdfjsLib.getDocument(typedArray).promise;
-        let extractedText = '';
-        console.log("Despues de cargar el pdf.");
-
-        // Extraer texto de cada página
-        for (let pageNum = 1; pageNum <= pdf.numPages; pageNum++) {
-            const page = await pdf.getPage(pageNum);
-            const textContent = await page.getTextContent();
-
-            // Concatenar el texto extraído
-            extractedText += textContent.items.map(item => item.str).join(' ') + '\n';
-        }
-
-        console.log(extractedText);
-        
-
-        // Simulación de análisis del texto
-        const analysisResponse = await simulatePostRequest('/api/analyze-document', {
-            text: extractedText
-        });
-
-        // Mostrar el análisis en la interfaz
-        const resultText = document.getElementById('result-text');
-        resultText.textContent = JSON.stringify(analysisResponse.analysis, null, 2);
-    };*/
-
-    /*fileReader.onerror = function () {
-        alert('Error al leer el archivo PDF. Inténtalo nuevamente.');
-    };*/
 });
