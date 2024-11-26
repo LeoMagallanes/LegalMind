@@ -52,33 +52,6 @@ document.getElementById('file-upload-form').addEventListener('submit', async fun
     fileReader.onerror = function () {
         alert('Error al leer el archivo PDF. Inténtalo nuevamente.');
     };
-
-    // Simular la conversión del archivo a base64
-    /*
-    const reader = new FileReader();
-    reader.readAsDataURL(file);
-    reader.onload = async function () {
-        const fileBase64 = reader.result.split(',')[1]; // Obtener solo la parte del base64
-
-        // Simulación de solicitud POST para subir archivo
-        const response = await simulatePostRequest('/api/upload', {
-            file: fileBase64
-        });
-
-        if (response.status === 'success') {
-            // Simular análisis del archivo
-            const analysisResponse = await simulatePostRequest('/api/analyze-document', {
-                text: "Este es el texto legal simulado extraído del archivo."
-            });
-
-            // Mostrar el resultado en la interfaz
-            const resultText = document.getElementById('result-text');
-            resultText.textContent = JSON.stringify(analysisResponse.analysis, null, 2);
-        } else {
-            alert('Error al subir el archivo. Inténtalo nuevamente.');
-        }
-    };
-    */
 });
 
 // Simulador de una petición POST para el análisis
