@@ -31,3 +31,13 @@ Rutas para interactuar con tu frontend y APIs externas.
 
 Al subir al repo:
 Usa .gitignore para ignorar el archivo node_modules/ (no debe subirse al repositorio).
+
+
+Backend (server.js): Usa GoogleGenerativeAI y GoogleAIFileManager para interactuar con la API de Google Gemini, cargar archivos y generar contenido.
+Frontend (app.js): Envía los archivos al backend, recibe la respuesta generada por Google Gemini y la muestra al usuario.
+API Key: Asegúrate de mantener tu clave de API en el archivo .env y cargarla usando dotenv.
+
+Pendientes:
+// investigar mas a fondo:
+fs 
+multer
