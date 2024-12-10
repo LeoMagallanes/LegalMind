@@ -1,0 +1,11 @@
+[build]
+    functions = "functions"
+    publish = "public"  # Carpeta donde están los archivos estáticos
+
+[functions]
+  node_bundler = "esbuild"
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200

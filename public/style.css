@@ -4,6 +4,7 @@ body {
     background-color: #121212; /* Fondo oscuro */
     color: #E0E0E0; /* Texto claro */
     font-family: Arial, sans-serif;
+    overflow-y: scroll; /* Habilitar scroll vertical */
 }
 
 h1, h4 {
@@ -16,10 +17,13 @@ pre {
     border: 1px solid #BB86FC; /* Borde en púrpura claro */
     white-space: pre-wrap;
     word-wrap: break-word;
+    overflow-y: auto; /* Permitir scroll en el contenedor */
+    margin-bottom: 70px; /* Añadir espacio suficiente para evitar que el footer lo oculte */
 }
 
 .container {
     margin-top: 50px;
+    margin-bottom: 50px;
 }
 
 .form-label {
@@ -65,11 +69,12 @@ pre {
 
 /* Estilo para el footer */
 .footer {
-    position: fixed;
+    position: relative;
     bottom: 0;
     width: 100%;
     background-color: #1E1E1E;
     padding: 10px 0;
+    margin-top: 20px;
 }
 
 .footer .text-muted {
